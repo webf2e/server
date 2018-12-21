@@ -1,11 +1,9 @@
 from flask import Flask
+from route.ServerRoute import serverRoute
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+app.register_blueprint(serverRoute)
 
 
 if __name__ == '__main__':
