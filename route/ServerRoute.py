@@ -14,3 +14,12 @@ def stopServer():
 @serverRoute.route('/server/restartServer',methods=["POST"])
 def restartServer():
     return str(SysUtil.restart())
+
+@serverRoute.route('/server/getPid',methods=["POST"])
+def getPid():
+    return str(SysUtil.getPid())
+
+
+@serverRoute.route('/server/isStarted',methods=["POST"])
+def isStarted():
+    return str(SysUtil.isStarted())
