@@ -35,5 +35,5 @@ def print_request_info():
     if urlPath.find("Server") != -1:
         agent = str(request.headers.get("User-agent"))
         print("访问admin的agent：{}".format(agent))
-        if(agent.find("HUAWEILYA-AL10") == -1):
+        if(agent.find("MI 9 Transparent Edition") == -1):
             abort(400)
