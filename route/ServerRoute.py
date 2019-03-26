@@ -29,10 +29,35 @@ def isStarted():
     return str(SysUtil.isStarted())
 
 
+@serverRoute.route('/webssh/start',methods=["POST"])
+def startServer():
+    return str(SysUtil.startWebssh())
+
+
+@serverRoute.route('/webssh/stop',methods=["POST"])
+def stopServer():
+    return str(SysUtil.killWebssh(SysUtil.getWebsshPid()))
+
+
+@serverRoute.route('/webssh/restart',methods=["POST"])
+def restartServer():
+    return str(SysUtil.restartWebssh())
+
+
+@serverRoute.route('/webssh/getPid',methods=["POST"])
+def getPid():
+    return str(SysUtil.getWebsshPid())
+
+
+@serverRoute.route('/webssh/isStarted',methods=["POST"])
+def isStarted():
+    return str(SysUtil.isWebsshStarted())
+
+
 @serverRoute.before_request
 def print_request_info():
     urlPath = str(request.path)
-    if urlPath.find("Server") != -1:
+    if urlPath.find("server") != -1 or urlPath.find("webssh") != -1:
         agent = str(request.headers.get("User-agent"))
         print("访问admin的agent：{}".format(agent))
         if(agent.find("MI 9 Transparent Edition") == -1):
