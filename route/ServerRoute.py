@@ -30,27 +30,27 @@ def isStarted():
 
 
 @serverRoute.route('/webssh/start',methods=["POST"])
-def startServer():
+def startWebssh():
     return str(SysUtil.startWebssh())
 
 
 @serverRoute.route('/webssh/stop',methods=["POST"])
-def stopServer():
+def stopWebssh():
     return str(SysUtil.killWebssh(SysUtil.getWebsshPid()))
 
 
 @serverRoute.route('/webssh/restart',methods=["POST"])
-def restartServer():
+def restartWebssh():
     return str(SysUtil.restartWebssh())
 
 
 @serverRoute.route('/webssh/getPid',methods=["POST"])
-def getPid():
+def getWebsshPid():
     return str(SysUtil.getWebsshPid())
 
 
 @serverRoute.route('/webssh/isStarted',methods=["POST"])
-def isStarted():
+def isWebsshStarted():
     return str(SysUtil.isWebsshStarted())
 
 
