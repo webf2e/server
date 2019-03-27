@@ -71,7 +71,7 @@ def autoDeploy(isRestart):
         r = moveFiles()
         if r["error"] == "":
             result["count"] = r["count"]
-            if isRestart:
+            if isRestart == "True":
                 SysUtil.restart()
                 result["isRestart"] = "True"
             else:
