@@ -73,6 +73,9 @@ def autoDeploy(isRestart):
             result["count"] = r["count"]
             if isRestart:
                 SysUtil.restart()
+                result["isRestart"] = "True"
+            else:
+                result["isRestart"] = "False"
         else:
             result["error"] = r["error"]
     else:
