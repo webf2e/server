@@ -1,9 +1,10 @@
 from git import *
-import json,os,shutil
+import json,os,shutil,requests,time
 from util import SysUtil
 
 gitPath = "/home/liuwenbin/Desktop/git/timetravel"
 projectPath = "/home/liuwenbin/Desktop/timetravel"
+checkUrl = "http://lovexj.pro/restart/check"
 
 def getGitLog():
     g = Git(gitPath)
@@ -76,4 +77,22 @@ def autoDeploy(isRestart):
             result["error"] = r["error"]
     else:
         result["error"] = "从git上拉取失败"
+    try:
+        log = getGitLog()
+        result["date"] = log["date"]
+        result["commit"] = log["commit"]
+    except:
+        pass
+    #调用接口判断是否成功
+    for i in range(0,10):
+        try:
+            r = requests.get(checkUrl)
+            if r.text == "OK":
+                result["check"] = "服务正常"
+                break
+            else:
+                result["check"] = r.text
+        except:
+            result["check"] = "服务异常"
+        time.sleep(1)
     return result

@@ -19,7 +19,6 @@ def moveFiles():
 @gitRoute.route('/git/autoDeploy',methods=["POST"])
 def autoDeploy():
     isRestart = bool(request.form.get("isRestart"))
-    print(isRestart)
     return Response(json.dumps(GitUtil.autoDeploy(isRestart)), mimetype='application/json')
 
 @gitRoute.before_request
